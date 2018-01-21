@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="note.save.app.savenote.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/action_bar_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="8dp"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_bold"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/filter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_filter_list_black_24px" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/note_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/action_bar_custom"
+        android:background="@color/white" />
+
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/common_padding"
+        android:layout_marginEnd="@dimen/common_padding"
+        android:layout_marginRight="@dimen/common_padding"
+        android:background="@drawable/ripple_for_notify_me_button"
+        android:padding="12dp"
+        android:src="@drawable/ic_add" />
+
+
+</RelativeLayout>
