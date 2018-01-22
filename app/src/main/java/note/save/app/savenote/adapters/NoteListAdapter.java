@@ -1,10 +1,12 @@
 package note.save.app.savenote.adapters;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +30,6 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     AppCompatActivity activity;
     List<Note> notes = new ArrayList<>();
     DatabaseHandler db;
-    int a;
 
     public NoteListAdapter(AppCompatActivity activity, DatabaseHandler db) {
         this.activity = activity;
@@ -53,7 +54,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final Note note = notes.get(position);
 
         if (holder instanceof ViewHolderNoteCards) {
-            binderHelper.bind(((ViewHolderNoteCards) holder).swipeLayout, note.getId()+ "");
+            binderHelper.bind(((ViewHolderNoteCards) holder).swipeLayout, note.getId() + "");
             ((ViewHolderNoteCards) holder).bind(note);
         }
 
@@ -79,17 +80,25 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             view.setSelected(false);
     }
 
+    public void saveStates(Bundle outState) {
+        binderHelper.saveStates(outState);
+    }
+
+    public void restoreStates(Bundle inState) {
+        binderHelper.restoreStates(inState);
+    }
+
     private class ViewHolderNoteCards extends RecyclerView.ViewHolder implements View.OnClickListener {
         View itemView, horizontal_line;
         ImageView star_button, heart_button;
         TextView note_title, note_description, last_updated_time;
         private SwipeRevealLayout swipeLayout;
         private View deleteLayout;
+        FrameLayout main_layout;
 
         private ViewHolderNoteCards(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            itemView.setOnClickListener(this);
             star_button = itemView.findViewById(R.id.star_button);
             star_button.setOnClickListener(this);
             heart_button = itemView.findViewById(R.id.heart_button);
@@ -100,6 +109,8 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             last_updated_time = itemView.findViewById(R.id.last_updated_time);
             swipeLayout = itemView.findViewById(R.id.swipe_layout);
             deleteLayout = itemView.findViewById(R.id.delete_layout);
+            main_layout = itemView.findViewById(R.id.main_layout);
+            main_layout.setOnClickListener(this);
         }
 
         public void bind(final Note note) {
@@ -107,10 +118,10 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if(db.deleteNote(note.getId())){
+                    if (db.deleteNote(note.getId())) {
                         notes.remove(position);  // perform delete operation
                         notifyItemRemoved(position);
-                    }else {
+                    } else {
                         GeneralUtil.showMessage(activity.getString(R.string.text_unable_to_perform_this_opeartion_right_now));
                     }
                 }

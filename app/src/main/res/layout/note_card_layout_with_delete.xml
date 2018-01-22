@@ -5,19 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:dragEdge="right"
-    android:background="@drawable/white_background"
     app:mode="same_level">
 
     <FrameLayout
         android:id="@+id/delete_layout"
         android:layout_width="@dimen/height_of_single_note_card"
         android:layout_height="@dimen/height_of_single_note_card"
-        android:background="@android:color/holo_red_dark">
+        android:background="@drawable/holo_red_dark_background">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_red_dark"
             android:drawableTop="@drawable/ic_delete_white_24px"
             android:layout_gravity="center"
             android:text="Delete"
@@ -25,7 +23,9 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
+        android:background="@drawable/white_background"
         android:layout_height="@dimen/height_of_single_note_card">
 
         <RelativeLayout
