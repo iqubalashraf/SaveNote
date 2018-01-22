@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:dragEdge="right"
+    android:background="@drawable/white_background"
+    app:mode="same_level">
+
+    <FrameLayout
+        android:id="@+id/delete_layout"
+        android:layout_width="@dimen/height_of_single_note_card"
+        android:layout_height="@dimen/height_of_single_note_card"
+        android:background="@android:color/holo_red_dark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:drawableTop="@drawable/ic_delete_white_24px"
+            android:layout_gravity="center"
+            android:text="Delete"
+            android:textColor="@android:color/white" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_of_single_note_card">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/heart_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/common_padding"
+                android:layout_marginRight="@dimen/common_padding"
+                android:padding="5dp"
+                android:src="@drawable/selector_heart_button" />
+
+            <ImageView
+                android:id="@+id/star_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/common_padding"
+                android:layout_marginRight="@dimen/common_padding"
+                android:layout_toLeftOf="@id/heart_button"
+                android:layout_toStartOf="@id/heart_button"
+                android:padding="5dp"
+                android:src="@drawable/selector_star_button" />
+
+            <TextView
+                android:id="@+id/note_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_padding"
+                android:layout_marginStart="@dimen/common_padding"
+                android:layout_toLeftOf="@id/star_button"
+                android:layout_toStartOf="@id/star_button"
+                android:ellipsize="end"
+                android:fontFamily="@font/avenir_next_bold"
+                android:maxLines="1"
+                android:text="Dummy title"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/note_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/note_title"
+                android:layout_marginLeft="@dimen/common_padding"
+                android:layout_marginStart="@dimen/common_padding"
+                android:layout_toLeftOf="@id/star_button"
+                android:layout_toStartOf="@id/star_button"
+                android:ellipsize="end"
+                android:fontFamily="@font/avenir_next_regular"
+                android:maxLines="1"
+                android:text="Dummy description"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/last_updated_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/note_description"
+                android:layout_marginLeft="@dimen/common_padding"
+                android:layout_marginStart="@dimen/common_padding"
+                android:fontFamily="@font/avenir_next_regular"
+                android:text="Today at 11:30pm"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/common_padding"
+            android:background="@color/black" />
+    </FrameLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

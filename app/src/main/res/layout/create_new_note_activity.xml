@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="note.save.app.savenote.activity.CreateNewNote">
+    <RelativeLayout
+        android:id="@+id/action_bar_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="8dp"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_bold"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_layout"
+        android:layout_below="@id/action_bar_custom"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/common_padding">
+        
+        <EditText
+            android:id="@+id/note_title"
+            android:hint="Enter note title"
+            android:fontFamily="@font/avenir_next_demi_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/note_description"
+            android:layout_below="@id/note_title"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/common_padding"
+            android:hint="Enter description"
+            android:fontFamily="@font/avenir_next_regular"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/button_save"
+            android:layout_below="@id/note_description"
+            android:layout_marginTop="@dimen/common_padding"
+            android:layout_centerHorizontal="true"
+            android:text="Save"
+            android:fontFamily="@font/avenir_next_bold"
+            android:background="@drawable/ripple_for_notify_me_button"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

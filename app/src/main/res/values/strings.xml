@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Save Note</string>
+    <string name="text_unable_to_perform_this_opeartion_right_now">Unable to perform this operation right now. Plaese try after some time.</string>
 </resources>

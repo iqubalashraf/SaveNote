@@ -118,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 note.setId(cursor.getInt(0));
                 note.setTitle(cursor.getString(1));
                 note.setDescription(cursor.getString(2));
-                note.setLast_updated_time(cursor.getInt(3));
+                note.setLast_updated_time(cursor.getLong(3));
                 note.setIs_hearted(cursor.getInt(4));
                 note.setIs_star(cursor.getInt(5));
                 note.setIs_poem(cursor.getInt(6));
@@ -146,6 +146,33 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             db.delete(TABLE_ALL_NOTES, KEY_ID + " = ?",
                     new String[] { String.valueOf(id) });
             db.close();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public boolean updateHeartStatus(int id, int new_status){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_IS_HEARTED, new_status);
+            db.update(TABLE_ALL_NOTES, cv, KEY_ID + "=" + id, null);
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateStarStatus(int id, int new_status){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_IS_STAR, new_status);
+            db.update(TABLE_ALL_NOTES, cv, KEY_ID + "=" + id, null);
             return true;
         }catch (SQLException e){
             e.printStackTrace();

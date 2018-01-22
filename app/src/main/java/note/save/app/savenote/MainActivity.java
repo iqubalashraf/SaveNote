@@ -1,5 +1,6 @@
 package note.save.app.savenote;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import note.save.app.savenote.activity.CreateNewNote;
 import note.save.app.savenote.adapters.NoteListAdapter;
 import note.save.app.savenote.dataModel.Note;
 import note.save.app.savenote.sql.DatabaseHandler;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activity = this;
         db = new DatabaseHandler(activity);
         linearLayoutManager = new LinearLayoutManager(activity);
-        noteListAdapter = new NoteListAdapter(activity);
+        noteListAdapter = new NoteListAdapter(activity, db);
         note_list = findViewById(R.id.note_list);
         note_list.setLayoutManager(linearLayoutManager);
         note_list.setAdapter(noteListAdapter);
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        notes.clear();
         if(notes.size() == 0){
             notes = db.getAllNotes();
             noteListAdapter.setNotes(notes);
@@ -66,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.filter_button:
                 break;
             case R.id.add_button:
-                db.addNote("First Note", "This is enough description", 1,1,0);
+                startActivity(new Intent(activity, CreateNewNote.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
         }
     }

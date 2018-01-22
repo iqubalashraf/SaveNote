@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/white_background">
 
     <ImageView
         android:id="@+id/heart_button"
@@ -35,6 +36,8 @@
         android:layout_toStartOf="@id/star_button"
         android:fontFamily="@font/avenir_next_bold"
         android:text="Dummy title"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginTop="@dimen/common_padding"
         android:layout_marginStart="@dimen/common_padding"
         android:layout_marginLeft="@dimen/common_padding"
@@ -47,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/star_button"
         android:layout_toStartOf="@id/star_button"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:layout_marginStart="@dimen/common_padding"
         android:layout_marginLeft="@dimen/common_padding"
         android:layout_below="@id/note_title"

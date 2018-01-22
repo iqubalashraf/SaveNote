@@ -5,8 +5,9 @@ package note.save.app.savenote.dataModel;
  */
 
 public class Note {
-    int id = 0, last_updated_time = 0, is_hearted = 0, is_poem = 0, is_star = 0;
+    int id = 0,  is_hearted = 0, is_poem = 0, is_star = 0;
     String title = "", description = "";
+    long last_updated_time = 0;
 
     public int getId() {
         return id;
@@ -16,11 +17,11 @@ public class Note {
         this.id = id;
     }
 
-    public int getLast_updated_time() {
+    public long getLast_updated_time() {
         return last_updated_time;
     }
 
-    public void setLast_updated_time(int last_updated_time) {
+    public void setLast_updated_time(long last_updated_time) {
         this.last_updated_time = last_updated_time;
     }
 
