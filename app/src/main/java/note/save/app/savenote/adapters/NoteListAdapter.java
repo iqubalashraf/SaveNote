@@ -28,6 +28,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     AppCompatActivity activity;
     List<Note> notes = new ArrayList<>();
     DatabaseHandler db;
+    int a;
 
     public NoteListAdapter(AppCompatActivity activity, DatabaseHandler db) {
         this.activity = activity;
