@@ -1,5 +1,6 @@
 package note.save.app.savenote.adapters;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import note.save.app.savenote.R;
+import note.save.app.savenote.activity.DetailsPageActivity;
 import note.save.app.savenote.dataModel.Note;
 import note.save.app.savenote.sql.DatabaseHandler;
 import note.save.app.savenote.utils.GeneralUtil;
@@ -121,6 +123,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     if (db.deleteNote(note.getId())) {
                         notes.remove(position);  // perform delete operation
                         notifyItemRemoved(position);
+                        saveStates(null);
                     } else {
                         GeneralUtil.showMessage(activity.getString(R.string.text_unable_to_perform_this_opeartion_right_now));
                     }
@@ -128,7 +131,7 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
             note_title.setText(note.getTitle());
             note_description.setText(note.getDescription());
-            last_updated_time.setText(GeneralUtil.getFormattedTime(note.getLast_updated_time()));
+            last_updated_time.setText(GeneralUtil.getFormattedDate(note.getLast_updated_time()));
             changeStatusOfView(heart_button, note.getIs_hearted());
             changeStatusOfView(star_button, note.getIs_star());
         }
@@ -153,6 +156,12 @@ public class NoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     } else {
                         GeneralUtil.showMessage(activity.getString(R.string.text_unable_to_perform_this_opeartion_right_now));
                     }
+                    break;
+                case R.id.main_layout:
+                    Intent intent = new Intent(activity, DetailsPageActivity.class);
+                    intent.putExtra(GeneralUtil.KEY_ID, note.getId());
+                    activity.startActivity(intent);
+                    activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                     break;
             }
             notifyDataSetChanged();

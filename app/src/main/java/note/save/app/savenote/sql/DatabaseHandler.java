@@ -25,7 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "SAVE_NOTES";                      // Database Name
-    private static final String TABLE_ALL_NOTES = "NOTES";                         // Location table name
+    private static final String TABLE_ALL_NOTES = "NOTES";                         // Note table name
     private static final String KEY_ID = "ID";                                     // ID of each note
     private static final String KEY_TITLE = "TITLE";                               // TITLE of each note
     private static final String KEY_DESCRIPTION = "DESCRIPTION";                   // description of each note
@@ -59,8 +59,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Adding new Location
-    public boolean addNote(String note_title, String note_description, int is_hearted, int is_star, int is_poem ){
+    // Adding new Note
+    public boolean addNote(String note_title, String note_description ){
         try{
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -68,14 +68,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put(KEY_TITLE, note_title);
             values.put(KEY_DESCRIPTION, note_description);
             values.put(KEY_LAST_UPDATE_TIME, new Date().getTime());//address title
-            values.put(KEY_IS_HEARTED, is_hearted);
-            values.put(KEY_IS_STAR, is_star);
-            values.put(KEY_IS_POEM, is_poem);
+            values.put(KEY_IS_HEARTED, 0);
+            values.put(KEY_IS_STAR, 0);
+            values.put(KEY_IS_POEM, 0);
 
             // Inserting Row
             db.insert(TABLE_ALL_NOTES,null,values);
             db.close(); // Closing database connection
-            Log.d("DataBaseHandler: ","Note Saved - "+note_title+" "+note_description);
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    // Updating old Note
+    public boolean updateNote(int id, String note_title, String note_description ){
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_TITLE, note_title);
+            values.put(KEY_DESCRIPTION, note_description);
+            values.put(KEY_LAST_UPDATE_TIME, new Date().getTime());//address title
+            db.update(TABLE_ALL_NOTES, values, KEY_ID + "=" + id, null);
+            db.close(); // Closing database connection
             return true;
         }catch (SQLException e){
             e.printStackTrace();
@@ -96,11 +114,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         note.setId(id);
         note.setTitle(cursor.getString(1));
         note.setDescription(cursor.getString(2));
-        note.setLast_updated_time(cursor.getInt(3));
+        note.setLast_updated_time(cursor.getLong(3));
         note.setIs_hearted(cursor.getInt(4));
         note.setIs_star(cursor.getInt(5));
         note.setIs_poem(cursor.getInt(6));
-
+        db.close();
         return note;
     }
 
@@ -125,7 +143,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 notes.add(note);
             } while (cursor.moveToNext());
         }
-        Collections.reverse(notes);
+        Collections.sort(notes);
+        db.close();
         return notes;
     }
 
@@ -136,6 +155,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(countQuery, null);
         int len = cursor.getCount();
         cursor.close();
+        db.close();
         return len;
     }
 
@@ -160,6 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(KEY_IS_HEARTED, new_status);
             db.update(TABLE_ALL_NOTES, cv, KEY_ID + "=" + id, null);
+            db.close();
             return true;
         }catch (SQLException e){
             e.printStackTrace();
@@ -173,10 +194,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ContentValues cv = new ContentValues();
             cv.put(KEY_IS_STAR, new_status);
             db.update(TABLE_ALL_NOTES, cv, KEY_ID + "=" + id, null);
+            db.close();
             return true;
         }catch (SQLException e){
             e.printStackTrace();
             return false;
         }
     }
+
+
 }

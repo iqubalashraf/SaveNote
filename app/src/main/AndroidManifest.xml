@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".MainActivity" android:theme="@style/NoActionBarCustomTheme"/>
         <activity android:name=".activity.CreateNewNote" android:theme="@style/NoActionBarCustomTheme"/>
+        <activity android:name=".activity.DetailsPageActivity" android:theme="@style/NoActionBarCustomTheme"/>
     </application>
 
 </manifest>

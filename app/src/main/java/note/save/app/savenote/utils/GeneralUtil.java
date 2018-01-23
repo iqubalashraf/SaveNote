@@ -3,11 +3,13 @@ package note.save.app.savenote.utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.format.DateFormat;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import note.save.app.savenote.ApplicationClass;
@@ -17,9 +19,10 @@ import note.save.app.savenote.ApplicationClass;
  */
 
 public class GeneralUtil {
-    public static final String timeFormat = "hh:mm a";
+    public static final String timeFormat = "h:mm a";
     public static final String DATE_FORMAT_dd_slash_mm_slash_yyyy = "MMM dd";
     public static final String DATE_FORMAT_EEEE = "EEEE";
+    public static final String KEY_ID = "note.save.app.savenote.utils.KEY_ID";
 
 
 
@@ -41,10 +44,29 @@ public class GeneralUtil {
         Date today = new Date();
         if (today.getTime() - unixTime < 24 * 60 * 60 * 1000)
             return "Today at " + simpleTimeFormat.format(date);
+        else if (today.getTime() - unixTime < 2 * 24 * 60 * 60 * 1000)
+            return "Yesterday at " + simpleTimeFormat.format(date);
         else if(today.getTime() - unixTime < 7 * 24 * 60 * 60 * 1000)
             return simpleDayFormat.format(date) + " at " + simpleTimeFormat.format(date);
         else
             return simpleDateFormat.format(date) + " at " + simpleTimeFormat.format(date);
+    }
+
+    public static String getFormattedDate(long unixTime) {
+        Calendar smsTime = Calendar.getInstance();
+        smsTime.setTimeInMillis(unixTime);
+
+        Calendar now = Calendar.getInstance();
+
+        if (now.get(Calendar.DATE) == smsTime.get(Calendar.DATE) ) {
+            return "Today at " + DateFormat.format(timeFormat, smsTime);
+        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) == 1  ){
+            return "Yesterday at " + DateFormat.format(timeFormat, smsTime);
+        } else if (now.get(Calendar.DATE) - smsTime.get(Calendar.DATE) < 7 ) {
+            return DateFormat.format(DATE_FORMAT_EEEE, smsTime).toString() + " at " + DateFormat.format(timeFormat, smsTime).toString();
+        } else {
+            return DateFormat.format(DATE_FORMAT_dd_slash_mm_slash_yyyy, smsTime).toString() + " at " + DateFormat.format(timeFormat, smsTime).toString();
+        }
     }
 
 }

@@ -1,10 +1,14 @@
 package note.save.app.savenote.dataModel;
 
+import android.support.annotation.NonNull;
+
+import java.util.Date;
+
 /**
  * Created by ashrafiqubal on 21/01/18.
  */
 
-public class Note {
+public class Note implements Comparable<Note>{
     int id = 0,  is_hearted = 0, is_poem = 0, is_star = 0;
     String title = "", description = "";
     long last_updated_time = 0;
@@ -66,5 +70,9 @@ public class Note {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    @Override
+    public int compareTo(@NonNull Note note) {
+        return new Date(note.last_updated_time).compareTo(new Date(this.last_updated_time));
     }
 }

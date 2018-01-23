@@ -94,6 +94,7 @@
                 android:layout_below="@id/note_description"
                 android:layout_marginLeft="@dimen/common_padding"
                 android:layout_marginStart="@dimen/common_padding"
+                android:textColor="#acacac"
                 android:fontFamily="@font/avenir_next_regular"
                 android:text="Today at 11:30pm"
                 android:textSize="12sp" />

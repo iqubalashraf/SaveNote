@@ -45,10 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         activity = this;
         db = new DatabaseHandler(activity);
         linearLayoutManager = new LinearLayoutManager(activity);
-        noteListAdapter = new NoteListAdapter(activity, db);
         note_list = findViewById(R.id.note_list);
         note_list.setLayoutManager(linearLayoutManager);
-        note_list.setAdapter(noteListAdapter);
         filter_button  = findViewById(R.id.filter_button);
         add_button = findViewById(R.id.add_button);
     }
@@ -68,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+
     @Override
     public void onBackPressed() {
         k++;
@@ -82,10 +81,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }, getResources().getInteger(R.integer.double_back_press_time_out));
             } catch (Exception e) {
                 finish();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         }else {
             finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        noteListAdapter = new NoteListAdapter(activity, db);
+        note_list.setAdapter(noteListAdapter);
     }
 
     @Override
