@@ -24,6 +24,8 @@ public class GeneralUtil {
     public static final String DATE_FORMAT_dd_slash_mm_slash_yyyy = "MMM dd";
     public static final String DATE_FORMAT_EEEE = "EEEE";
     public static final String KEY_ID = "note.save.app.savenote.utils.KEY_ID";
+    public static final float animationValue = 0.45f;
+    public static final int ANIMATION_TIME_OUT = 400;
 
 
 

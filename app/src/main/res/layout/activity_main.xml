@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context="note.save.app.savenote.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/menuPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="25dp"/>
+
     <RelativeLayout
         android:id="@+id/action_bar_custom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
         android:background="@color/colorPrimary"
         android:paddingBottom="8dp"
         android:paddingLeft="@dimen/common_padding"
@@ -39,23 +51,21 @@
         android:id="@+id/note_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/action_bar_custom"
+        android:layout_marginTop="75dp"
         android:background="@color/white" />
 
     <ImageView
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:alpha="0.7"
+        android:layout_gravity="bottom|end|right"
         android:layout_marginBottom="@dimen/common_padding"
         android:layout_marginEnd="@dimen/common_padding"
         android:layout_marginRight="@dimen/common_padding"
+        android:alpha="0.7"
         android:background="@drawable/ripple_for_notify_me_button"
         android:padding="12dp"
         android:src="@drawable/ic_add" />
 
 
-</RelativeLayout>
+</FrameLayout>
