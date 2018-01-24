@@ -77,14 +77,14 @@ public class CreateNewNote extends AppCompatActivity implements View.OnClickList
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
             });*/
-            dialog.setNegativeButton("Discard", new DialogInterface.OnClickListener() {
+            dialog.setNegativeButton(getString(R.string.text_discard), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     finish();
                     overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 }
             });
-            dialog.setNeutralButton("Continue editing", new DialogInterface.OnClickListener() {
+            dialog.setNeutralButton(getString(R.string.text_continue_editing), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -129,7 +129,7 @@ public class CreateNewNote extends AppCompatActivity implements View.OnClickList
                 if (note != null)
                     setData(note);
                 else
-                    GeneralUtil.showMessage("Nothing to undo.");
+                    GeneralUtil.showMessage(getString(R.string.text_nothing_to_undo));
                 break;
         }
     }
@@ -137,12 +137,12 @@ public class CreateNewNote extends AppCompatActivity implements View.OnClickList
     private boolean validatedata(boolean showMsg) {
         if (note_title.getText().toString().trim().equals("")) {
             if (showMsg)
-                GeneralUtil.showMessage("Enter note title");
+                GeneralUtil.showMessage(getString(R.string.text_enter_note_title));
             return false;
         }
         if (note_description.getText().toString().trim().equals("")) {
             if (showMsg)
-                GeneralUtil.showMessage("Enter note description");
+                GeneralUtil.showMessage(getString(R.string.text_enter_note_description));
             return false;
         }
         return true;
@@ -164,18 +164,18 @@ public class CreateNewNote extends AppCompatActivity implements View.OnClickList
             if (db.updateNote(note.getId(),
                     note_title.getText().toString().trim(),
                     note_description.getText().toString().trim())) {
-                GeneralUtil.showMessage("Note updated successfully.");
+                GeneralUtil.showMessage(getString(R.string.text_note_updated_successfully));
                 finish();
             } else {
-                GeneralUtil.showMessage("Unable to update note.");
+                GeneralUtil.showMessage(getString(R.string.text_unable_to_updated_note));
             }
         } else {
             if (db.addNote(note_title.getText().toString().trim(),
                     note_description.getText().toString().trim())) {
-                GeneralUtil.showMessage("Note saved successfully.");
+                GeneralUtil.showMessage(getString(R.string.text_note_saved_successfully));
                 finish();
             } else {
-                GeneralUtil.showMessage("Unable to save note.");
+                GeneralUtil.showMessage(getString(R.string.text_unable_to_save_note));
             }
         }
     }

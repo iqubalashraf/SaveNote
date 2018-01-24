@@ -46,6 +46,8 @@
             android:layout_marginRight="@dimen/action_bar_height"
             android:layout_marginStart="@dimen/action_bar_height"
             android:textColor="@color/black"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:fontFamily="@font/avenir_next_bold"
             android:text="And then there were none"
             android:textSize="32sp" />

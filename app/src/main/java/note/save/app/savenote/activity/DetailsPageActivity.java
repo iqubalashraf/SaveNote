@@ -76,7 +76,7 @@ public class DetailsPageActivity extends AppCompatActivity implements View.OnCli
         this.note = note;
         note_title.setText(note.getTitle());
         note_description.setText(note.getDescription());
-        last_updated_time.setText("Last updated:  " + GeneralUtil.getFormattedDate(note.getLast_updated_time()));
+        last_updated_time.setText(getString(R.string.text_last_updated) + GeneralUtil.getFormattedDate(note.getLast_updated_time()));
     }
 
     @Override

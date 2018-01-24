@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onBackPressed() {
         k++;
         if (k == 1) {
-            GeneralUtil.showMessage("Press again to exit.");
+            GeneralUtil.showMessage(getString(R.string.text_press_again_to_exit));
             try {
                 new Handler().postDelayed(new Runnable() {
                     @Override
