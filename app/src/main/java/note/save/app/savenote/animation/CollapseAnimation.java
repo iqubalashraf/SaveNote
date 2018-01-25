@@ -6,6 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import note.save.app.savenote.utils.GeneralUtil;
 
@@ -16,10 +17,10 @@ import note.save.app.savenote.utils.GeneralUtil;
 public class CollapseAnimation extends TranslateAnimation implements
         TranslateAnimation.AnimationListener {
 
-    private RecyclerView mainLayout;
+    private RelativeLayout mainLayout;
     int panelWidth;
 
-    public CollapseAnimation(RecyclerView layout, int width, int fromXType,
+    public CollapseAnimation(RelativeLayout layout, int width, int fromXType,
                              float fromXValue, int toXType, float toXValue, int fromYType,
                              float fromYValue, int toYType, float toYValue) {
 

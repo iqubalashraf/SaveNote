@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQuery;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 import note.save.app.savenote.dataModel.Note;
+import note.save.app.savenote.utils.GeneralUtil;
 
 /**
  * Created by ashrafiqubal on 21/01/18.
@@ -126,7 +128,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Note> getAllNotes(){
         // Select All Query
         List<Note> notes = new ArrayList<>();
-        String selectQuery = "SELECT  * FROM " + TABLE_ALL_NOTES;
+        String selectQuery = "";
+        if(!GeneralUtil.isStar() && !GeneralUtil.isHearted()){
+            selectQuery = "SELECT  * FROM " + TABLE_ALL_NOTES;
+        }else if(!GeneralUtil.isStar()){
+            selectQuery = "SELECT  * FROM " + TABLE_ALL_NOTES + " WHERE " + KEY_IS_HEARTED + " = " + 1/*(GeneralUtil.isHearted()?1:0)*/;
+        }else if(!GeneralUtil.isHearted()){
+            selectQuery = "SELECT  * FROM " + TABLE_ALL_NOTES + " WHERE " + KEY_IS_STAR + " = " + 1/*(GeneralUtil.isStar()?1:0)*/;
+        }else {
+            selectQuery = "SELECT  * FROM " + TABLE_ALL_NOTES + " WHERE " + KEY_IS_STAR + " = " + 1/*(GeneralUtil.isStar()?1:0)*/ +
+                    " AND " +KEY_IS_HEARTED + " = " + 1/*(GeneralUtil.isHearted()?1:0)*/;
+        }
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 

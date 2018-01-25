@@ -13,59 +13,67 @@
 
     </FrameLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="25dp"/>
-
     <RelativeLayout
-        android:id="@+id/action_bar_custom"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/colorPrimary"
-        android:paddingBottom="8dp"
-        android:paddingLeft="@dimen/common_padding"
-        android:paddingRight="@dimen/common_padding">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/avenir_next_bold"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/black"
-            android:textSize="28sp" />
-
-        <ImageView
-            android:id="@+id/filter_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_filter_list_black_24px" />
-
-    </RelativeLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/note_list"
+        android:id="@+id/sliding_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
-        android:background="@color/white" />
+        android:background="@color/colorPrimary">
+        <View
+            android:id="@+id/status_bar"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"/>
+        <RelativeLayout
+            android:id="@+id/action_bar_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_below="@id/status_bar"
+            android:background="@color/colorPrimary"
+            android:paddingBottom="8dp"
+            android:paddingLeft="@dimen/common_padding"
+            android:paddingRight="@dimen/common_padding">
 
-    <ImageView
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end|right"
-        android:layout_marginBottom="@dimen/common_padding"
-        android:layout_marginEnd="@dimen/common_padding"
-        android:layout_marginRight="@dimen/common_padding"
-        android:alpha="0.7"
-        android:background="@drawable/ripple_for_notify_me_button"
-        android:padding="12dp"
-        android:src="@drawable/ic_add" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/avenir_next_bold"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
 
+            <ImageView
+                android:id="@+id/filter_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/filter_selected_menu_icon" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/note_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/action_bar_custom"
+            android:background="@color/white" />
+
+        <ImageView
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:alpha="0.7"
+            android:layout_marginBottom="@dimen/common_padding"
+            android:layout_marginEnd="@dimen/common_padding"
+            android:layout_marginRight="@dimen/common_padding"
+            android:background="@drawable/ripple_for_notify_me_button"
+            android:padding="12dp"
+            android:src="@drawable/ic_add" />
+    </RelativeLayout>
 
 </FrameLayout>

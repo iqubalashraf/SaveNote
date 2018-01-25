@@ -1,12 +1,11 @@
 package note.save.app.savenote.animation;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import note.save.app.savenote.utils.GeneralUtil;
 
@@ -17,10 +16,11 @@ import note.save.app.savenote.utils.GeneralUtil;
 public class ExpandAnimation extends TranslateAnimation implements
         Animation.AnimationListener {
 
-    private RecyclerView mainLayout;
     int panelWidth;
+    private RelativeLayout mainLayout;
+    private FrameLayout menuPanel;
 
-    public ExpandAnimation(RecyclerView layout, int width, int fromXType,
+    public ExpandAnimation(RelativeLayout layout, int width, int fromXType,
                            float fromXValue, int toXType, float toXValue, int fromYType,
                            float fromYValue, int toYType, float toYValue) {
 
